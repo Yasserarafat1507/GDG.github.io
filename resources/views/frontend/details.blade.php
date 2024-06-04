@@ -1,35 +1,33 @@
 <x-frontend.layout>
-    @section('title', 'Details')
+    @section('title', $event->name)
     <section class="container relative max-w-screen-xl pt-10 overflow-hidden">
         <div class="flex items-center flex-wrap mb-[38px] justify-between gap-5">
             <!-- Page Header -->
             <div class="flex flex-col gap-4 max-w-[430px]">
-                <div class="inline-flex gap-[6px] items-center bg-butter-yellow rounded-full px-4 py-[6px] w-max">
+                <div class="inline-flex gap-[6px] items-center bg-blue-500 rounded-full px-4 py-[6px] w-max">
                     <img src="{{ asset('assets/svgs/ic-champion-cup.svg') }}" alt="tickety-assets">
                     <p class="text-sm font-semibold text-dark-indigo">
                         Popular Event
                     </p>
                 </div>
 
-                <h1 class="text-5xl font-bold leading-normal">
-                    Design 101: Product Manager
+                <h1 class="text-5xl text-black font-bold leading-normal">
+                    {{ $event->name }}
                 </h1>
-                <p class="text-lg text-iron-grey">
-                    Learn how to facilitate design sprint today
+                <p class="text-lg text-neutral-500">
+                    {{ $event->headline }}
                 </p>
             </div>
 
             <!-- Rating Star -->
             <div>
-                <p class="mb-2 text-lg font-semibold text-iron-grey md:text-end">
-                    18,309 people
+                <p class="mb-2 text-lg font-semibold text-black md:text-end">
+                    {{ number_format($event->tickets_count) }} people
                 </p>
                 <div class="flex items-center gap-[2px]">
-                    <img src="{{ asset('assets/svgs/ic-star.svg') }}" alt="tickety-assets">
-                    <img src="{{ asset('assets/svgs/ic-star.svg') }}" alt="tickety-assets">
-                    <img src="{{ asset('assets/svgs/ic-star.svg') }}" alt="tickety-assets">
-                    <img src="{{ asset('assets/svgs/ic-star.svg') }}" alt="tickety-assets">
-                    <img src="{{ asset('assets/svgs/ic-star.svg') }}" alt="tickety-assets">
+                    @for ($i = 0; $i < 5; $i++)
+                        <img src="{{ asset('assets/svgs/ic-star.svg') }}" alt="tickety-assets">
+                    @endfor
                 </div>
             </div>
         </div>
@@ -37,20 +35,16 @@
 
     <section class="relative overflow-hidden">
         <div class="container relative max-w-screen-xl">
+            @if ($event ->photos)
+                @foreach ($event ->photos as $photo)
+                    
+                @endforeach
             <div id="galleryCarousel">
-                <img src="{{ asset('assets/images/gallery-1.webp') }}" class="w-[433px] h-[310px] rounded-2xl mr-[30px]"
-                    alt="tickety-assets">
-                <img src="{{ asset('assets/images/gallery-2.webp') }}" class="w-[433px] h-[310px] rounded-2xl mr-[30px]"
-                    alt="tickety-assets">
-                <img src="{{ asset('assets/images/gallery-3.webp') }}" class="w-[433px] h-[310px] rounded-2xl mr-[30px]"
-                    alt="tickety-assets">
-                <img src="{{ asset('assets/images/gallery-1.webp') }}" class="w-[433px] h-[310px] rounded-2xl mr-[30px]"
-                    alt="tickety-assets">
-                <img src="{{ asset('assets/images/gallery-2.webp') }}" class="w-[433px] h-[310px] rounded-2xl mr-[30px]"
-                    alt="tickety-assets">
-                <img src="{{ asset('assets/images/gallery-1.webp') }}" class="w-[433px] h-[310px] rounded-2xl mr-[30px]"
+                <img src="{{ Storage::url($photo) }}" class="w-[433px] h-[310px] rounded-2xl mr-[30px]"
                     alt="tickety-assets">
             </div>
+            @endif
+
             <!-- Prev Button -->
             <div class="absolute hidden -translate-y-1/2 top-1/2 right-4 lg:right-[200px] cursor-pointer"
                 id="carouselRightButton">
@@ -58,7 +52,7 @@
             </div>
             <!-- Next Button -->
             <div class="absolute -translate-y-1/2 cursor-pointer top-1/2 lg:left-20" id="carouselLeftButton">
-                <img src="=" {{ asset('assets/svgs/ic-left-rounded.svg') }}" alt="tickety-assets">
+                <img src=" {{ asset('assets/svgs/ic-left-rounded.svg') }}" alt="tickety-assets">
             </div>
         </div>
     </section>
@@ -69,17 +63,12 @@
     <section id="eventDescription" class="container max-w-screen-xl pt-[70px] relative pb-[156px]">
         <div class="flex flex-wrap items-start justify-between gap-y-[30px]">
             <div>
-                <h5 class="text-[24px] md:text-[38px] font-bold">
-                    What <span class="text-butter-yellow">This</span> <br>
-                    <span class="text-butter-yellow">Event</span> About?
+                <h5 class="text-[24px] text-black md:text-[38px] font-bold">
+                    What <span class="text-blue-500">This</span> <br>
+                    <span class="text-blue-500">Event</span> About?
                 </h5>
-                <p class="text-iron-grey text-lg leading-8 max-w-[640px] mt-4 mb-[30px]">
-                    Advance your skills as a beginning programmer with Python—one of
-                    the most versatile and widely used programming languages! In this
-                    course, you will build on your understanding of fundamental Python
-                    and learn some more advanced skills, including how to work with files
-                    on your computer's disk, how to retrieve data using a web API, and how
-                    to use Object-Oriented Programming (OOP) to create your own.
+                <p class="text-neutral-500 text-lg leading-8 max-w-[640px] mt-4 mb-[30px]">
+                    {{ $event->description }}
                 </p>
 
                 <div class="max-w-[500px]">
@@ -87,45 +76,43 @@
                         <div class="flex items-center gap-4">
                             <img src="{{ asset('assets/svgs/ic-location.svg') }}" alt="tickety-assets">
                             <div>
-                                <p class="text-pastel-purple text-sm mb-[2px]">
+                                <p class="text-black text-sm mb-[2px]">
                                     Location
                                 </p>
-                                <p class="text-base font-semibold">
-                                    Stadium Jaksel
-                                    Parabellum
+                                <p class="text-base text-neutral-500 font-semibold">
+                                    {{ $event->location }}
                                 </p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
                             <img src="{{ asset('assets/svgs/ic-circles.svg') }}" alt="tickety-assets">
                             <div>
-                                <p class="text-pastel-purple text-sm mb-[2px]">
+                                <p class="text-black text-sm mb-[2px]">
                                     Type
                                 </p>
-                                <p class="text-base font-semibold">
-                                    Online Event
+                                <p class="text-base text-neutral-500 font-semibold">
+                                    {{ Str::title($event->type) }} Event
                                 </p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
                             <img src="{{ asset('assets/svgs/ic-calendar.svg') }}" alt="tickety-assets">
                             <div>
-                                <p class="text-pastel-purple text-sm mb-[2px]">
+                                <p class="text-black text-sm mb-[2px]">
                                     Date
                                 </p>
-                                <p class="text-base font-semibold">
-                                    12 June, 2023
-                                    18.00 PM
+                                <p class="text-base text-neutral-500 font-semibold">
+                                    {{ $event->start_time->format('d M Y H i:A') }}
                                 </p>
                             </div>
                         </div>
                         <div class="flex items-center gap-4">
                             <img src="{{ asset('assets/svgs/ic-watch.svg') }}" alt="tickety-assets">
                             <div>
-                                <p class="text-pastel-purple text-sm mb-[2px]">
+                                <p class="text-black text-sm mb-[2px]">
                                     Duration
                                 </p>
-                                <p class="text-base font-semibold">
+                                <p class="text-base text-neutral-500 font-semibold">
                                     17hrs
                                 </p>
                             </div>
@@ -134,96 +121,55 @@
                 </div>
             </div>
 
-            <form action="" method=""
-                class="bg-primary p-5 rounded-2xl flex flex-col gap-5 max-w-[380px] w-full md:-mt-[120px] z-10 relative">
-                <p class="text-xl font-semibold">
+            <form action="{{ route('checkout', $event->slug) }}" method="POST" enctype="multipart/form-data"
+                class="bg-white border-solid border-2 border-black p-5 rounded-2xl flex flex-col gap-5 max-w-[380px] w-full md:-mt-[120px] z-10 relative">
+                @csrf
+                @method('POST')
+                <p class="text-xl text-black font-semibold">
                     Let's get your tickets
                 </p>
-                <!-- Entry -->
-                <div class="px-5 py-6 bg-bluish-purple rounded-2xl">
+                @foreach ($event->tickets as $ticket)
+                    <!-- Entry -->
+                <div class="px-5 py-6 bg-white border-solid border-2 border-black rounded-2xl">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="mb-1 text-base font-semibold">
-                                Entry
+                            <p class="mb-1 text-base text-black font-semibold">
+                                {{ $ticket->name }}
                             </p>
-                            <p class="text-[22px] font-semibold text-secondary">
-                                $12,000
+                            <p class="text-[22px] font-semibold text-blue-500">
+                                Rp{{ number_format($ticket->price) }}
                             </p>
                         </div>
                         <div class="inline-flex items-center justify-between max-w-[150px]">
                             <button type="button" class="minusButton">
                                 <img src="{{ asset('assets/svgs/ic-minus.svg') }}" alt="tickety-assets">
                             </button>
-                            <input type="number" name="entry_ticket" id="entry_ticket"
-                                class="text-center bg-transparent focus:outline-none" value="12" min="1" max="100">
+                            <input type="number" name="tickets[{{ $ticket->id }}]" data-price="{{ $ticket->price }}"
+                                class="text-center text-black bg-transparent focus:outline-none" value="0" min="0" max="{{ $ticket->quantity < $ticket->max_buy ? $ticket->quantity : $ticket->max_buy}}">
                             <button type="button" class="plusButton">
                                 <img src="{{ asset('assets/svgs/ic-plus.svg') }}" alt="tickety-assets">
                             </button>
                         </div>
                     </div>
                 </div>
-                <!-- Pro -->
-                <div class="px-5 py-6 bg-bluish-purple rounded-2xl">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="mb-1 text-base font-semibold">
-                                Pro
-                            </p>
-                            <p class="text-[22px] font-semibold text-secondary">
-                                $50,000
-                            </p>
-                        </div>
-                        <div class="inline-flex items-center justify-between max-w-[150px]">
-                            <button type="button" class="minusButton">
-                                <img src="{{ asset('assets/svgs/ic-minus.svg') }}" alt="tickety-assets">
-                            </button>
-                            <input type="number" name="pro_ticket" id="pro_ticket"
-                                class="text-center bg-transparent focus:outline-none" value="44" min="1" max="100">
-                            <button type="button" class="plusButton">
-                                <img src="{{ asset('assets/svgs/ic-plus.svg') }}" alt="tickety-assets">
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Enterprise -->
-                <div class="px-5 py-6 bg-bluish-purple rounded-2xl">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="mb-1 text-base font-semibold">
-                                Enterprise
-                            </p>
-                            <p class="text-[22px] font-semibold text-secondary">
-                                $250,000
-                            </p>
-                        </div>
-                        <div class="inline-flex items-center justify-between max-w-[150px]">
-                            <button type="button" class="minusButton" data-target="test">
-                                <img src="{{ asset('assets/svgs/ic-minus.svg') }}" alt="tickety-assets">
-                            </button>
-                            <input type="number" name="enterprise_ticket" id="enterprise_ticket"
-                                class="text-center bg-transparent focus:outline-none" value="664" min="1" max="100">
-                            <button type="button" class="plusButton">
-                                <img src="{{ asset('assets/svgs/ic-plus.svg') }}" alt="tickety-assets">
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
                 <div class="inline-flex items-center justify-between">
                     <p class="text-base font-semibold">
-                        17 tickets
+                        <span id="totalTickets">0</span> tickets
                     </p>
-                    <p class="text-[22px] font-semibold text-secondary">
-                        $899,000
+                    <p class="text-[22px] font-semibold text-blue-500">
+                        Rp<span id="totalPrice">0</span>
                     </p>
                 </div>
-                <a href="{{ url('/checkout') }}" class="btn-secondary">
+                {{-- <a href="{{ url('/checkout') }}" class="btn-secondary">
                     Book Tickets Now
-                </a>
-                <!-- <button type="submit" class="btn-secondary">
+                </a> --}}
+                <button type="submit" class="btn-secondary bg-blue-500" id="bookTicket">
                     Book Tickets Now
-                </button> -->
+                </button>
             </form>
-        </div>np
+        </div>
     </section>
     
     @push('css')
@@ -281,23 +227,62 @@
         })
     </script>
 
-    <!-- Input ticket increment -->
+    {{-- Input ticket increment --}}
     <script>
-        $(() => {
-            $('.minusButton').on('click', function () {
-                let inputElement = $(this).siblings('input[type=number]')
-                let currentValue = inputElement.val()
-                if (currentValue != 0) {
-                    inputElement.val(--currentValue)
-                }
-            })
-
-            $('.plusButton').on('click', function () {
-                let inputElement = $(this).siblings('input[type=number]')
-                let currentValue = inputElement.val()
-                inputElement.val(++currentValue)
-            })
-        })
-    </script>
+        $(function() {
+          // Check if initial totalTickets is 0 and update button state
+          if ($('#totalTickets').text() == 0) {
+            $('#bookTicket').addClass('opacity-50 cursor-not-allowed').text('Please select at least 1 ticket');
+          }
+  
+          // Decrease quantity when minus button is clicked
+          $('.minusButton').on('click', function() {
+            let inputElement = $(this).siblings('input[type=number]');
+            let currentValue = inputElement.val();
+            if (currentValue != 0) {
+              inputElement.val(--currentValue).trigger('change');
+            }
+          });
+  
+          // Increase quantity when plus button is clicked
+          $('.plusButton').on('click', function() {
+            let inputElement = $(this).siblings('input[type=number]');
+            let currentValue = inputElement.val();
+            let maxValue = inputElement.attr('max');
+            if (currentValue < maxValue) {
+              inputElement.val(++currentValue).trigger('change');
+            }
+          });
+  
+          // Update total tickets and total price when input value changes
+          $('input[type=number]').on('change keyup mouseup mousewheel', function() {
+            let totalTickets = 0;
+            let totalPrice = 0;
+            $('input[type=number]').each(function() {
+              let price = $(this).data('price');
+              let quantity = $(this).val();
+              totalTickets += parseInt(quantity);
+              totalPrice += parseInt(quantity) * parseInt(price);
+            });
+            $('#totalTickets').text(totalTickets);
+            $('#totalPrice').text(totalPrice);
+  
+            // Update button state based on totalTickets
+            if (totalTickets > 0) {
+              $('#bookTicket').removeClass('opacity-50 cursor-not-allowed').text('Book Tickets Now');
+            } else {
+              $('#bookTicket').addClass('opacity-50 cursor-not-allowed').text('Please select at least 1 ticket');
+            }
+          });
+  
+          // Prevent form submission and update button state if totalTickets is 0
+          $('#bookTicket').on('click', function(e) {
+            if ($('#totalTickets').text() == 0) {
+              e.preventDefault();
+              $(this).addClass('opacity-50 cursor-not-allowed').text('Please select at least 1 ticket');
+            }
+          });
+        });
+      </script>
     @endpush
 </x-frontend.layout>

@@ -26,7 +26,7 @@ export default {
                 poppins: "Poppins, sans-serif",
             },
             colors: {
-                "dark-indigo": "#0D0322",
+                "dark-indigo": "#ffffff",
                 primary: "#27164B",
                 secondary: "#82D0DF",
                 "butter-yellow": "#F7FF82",

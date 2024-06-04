@@ -13,14 +13,14 @@ class HomeController extends Controller
     {  
         $events= $this->fetchEvent();
         $categories = $this->fetchCategory();
-        dd($categories);
-        return view('frontend.index');
+        // dd($events);
+        return view('frontend.index', compact('events', 'categories'));
     }
 
    //fetch data event
    private function fetchEvent(){
     $category = request()->query('category');
-    $event = Event::upcoming();
+    $event = Event::query();
    
     //limit event 6
     if(!request()->query('all_events')){

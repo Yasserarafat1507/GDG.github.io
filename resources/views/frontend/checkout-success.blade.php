@@ -6,11 +6,11 @@
             <h2 class="mt-[30px] text-[32px] font-bold">
                 Success Checkout
             </h2>
-            <p class="mt-4 mb-10 text-lg leading-8 text-iron-grey">
+            <p class="mt-4 mb-10 text-lg leading-8 text-neutral-500">
                 We will send ticket details through your <br class="hidden md:block">
                 email, please sit tight and enjoy your time.
             </p>
-            <a href="{{ url('/') }}" class="btn-secondary px-[34px]">
+            <a href="{{ url('/') }}" class="btn-secondary bg-blue-500 px-[34px]">
                 Book Other Ticket
             </a>
         </div>

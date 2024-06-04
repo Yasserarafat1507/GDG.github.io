@@ -14,7 +14,8 @@ class Ticket extends Model
         'name',
         'price',
         'quantity',
-        'max_buy'
+        'max_buy',
+        'event_id',
     ];
 
     //relation to event

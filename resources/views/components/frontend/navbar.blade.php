@@ -4,7 +4,7 @@
         <div class="flex items-center justify-between">
             <!-- LOGO -->
             <a href="{{ url('/') }}">
-                <img src="{{ asset('assets/svgs/logo-type.svg') }}" alt="tickety-assets" />
+                <img src="{{ asset('assets/images/GDG/Nav.png') }}" height="500" width="500" alt="tickety-assets" />
             </a>
             <!-- RESPONSIVE NAVBAR BUTTON TOGGLER -->
             <div class="block lg:hidden">
@@ -22,14 +22,14 @@
         <div class="hidden w-full lg:block" id="navigation">
             <div
                 class="flex flex-col items-baseline gap-4 mt-6 lg:justify-between lg:flex-row lg:items-center lg:mt-0">
-                <div class="flex flex-col w-full ml-auto lg:w-auto gap-4 lg:gap-[50px] lg:items-center lg:flex-row">
-                    <a href="#!" class="nav-link-item">Flash Sale</a>
-                    <a href="#!" class="nav-link-item">Newest</a>
-                    <a href="#!" class="nav-link-item">Categories</a>
-                    <a href="#!" class="nav-link-item">Stories</a>
+                <div class="flex flex-col w-full ml-auto lg:w-auto gap-4 lg:gap-[50px] lg:items-center lg:flex-row ">
+                    <a href="#!" class="text-zinc-950 hover:text-neutral-400">Flash Sale</a>
+                    <a href="#!" class="text-zinc-950 hover:text-neutral-400">Newest</a>
+                    <a href="#!" class="text-zinc-950 hover:text-neutral-400">Categories</a>
+                    <a href="#!" class="text-zinc-950 hover:text-neutral-400">Stories</a>
                 </div>
                 <div class="flex flex-col w-full ml-auto lg:w-auto lg:gap-12 lg:items-center lg:flex-row">
-                    <a href="#!" class="btn-primary">
+                    <a href="#!" class="btn-primary bg-blue-500">
                         Sign In
                     </a>
                 </div>

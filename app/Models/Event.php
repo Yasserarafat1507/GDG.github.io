@@ -49,7 +49,8 @@ class Event extends Model
      */
     public function getStartFromAttribute()
     {
-        return $this->tickets()->orderBy('price')->get();
+        $lowestTicket = $this->tickets()->orderBy('price')->first();
+        return $lowestTicket ? $lowestTicket->price : null;
         
     }
      /**

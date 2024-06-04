@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="{{ asset('assets/svgs/logo-mark.svg') }}" type="image/x-icon">
-    <title> @yield('title') | {{ config('layout.name', 'Eccomerce') }}</title>
+    <link rel="shortcut icon" href="{{ asset('assets/images/GDG/gdg.png') }}" type="image/x-icon">
+    <title> @yield('title') | {{ config('layout.name', 'GDG') }}</title>
 
     {{--Scripts --}}
     @vite(['resources/css/frontend.css'])
